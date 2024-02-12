@@ -23,9 +23,9 @@ export default function Task1() {
     const form = useForm<FormTyping>({
         defaultValues: {
             numbers: [
-                {value: 0},
-                {value: 0},
-                {value: 0},
+                {},
+                {},
+                {},
             ]
         },
         resolver: zodResolver(formSchema)
@@ -36,9 +36,9 @@ export default function Task1() {
     const onSubmit = form.handleSubmit((data) => {
         const sum = data.numbers.reduce((acc, n) => acc + n.value, 0)
 
-        if(data.numbers.some(n => n.value > 5)){
-            setResult(Math.pow(sum,3))
-        }else{
+        if (data.numbers.some(n => n.value > 5)) {
+            setResult(Math.pow(sum, 3))
+        } else {
             setResult(sum)
         }
     });
@@ -62,11 +62,7 @@ export default function Task1() {
                         </CardTitle>
                         <CardDescription>
                             Задано три числа.
-                            Якщо хоч одне з них
-                            більше за 5, то
-                            знайти куб суми. В
-                            іншому випадку –
-                            суму .
+                            Якщо хоч одне з них більше за 5, то знайти куб суми. В іншому випадку – суму.
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -79,7 +75,7 @@ export default function Task1() {
                                         render={({field}) => (
                                             <FormItem>
                                                 <FormControl>
-                                                    <Input {...field} />
+                                                    <Input {...field} placeholder={`Number #${index}`}/>
                                                 </FormControl>
                                                 <FormMessage/>
                                             </FormItem>

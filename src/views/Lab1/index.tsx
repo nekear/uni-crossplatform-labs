@@ -1,6 +1,7 @@
-import Task1 from "@/views/Lab1/Task1";
 import React from "react";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
+import Task1 from "@/views/Lab1/Task1";
+import Task2 from "@/views/Lab1/Task2";
 
 export default function Lab1(){
     return (
@@ -14,7 +15,7 @@ export default function Lab1(){
                     <Task1 />
                 </TabsContent>
                 <TabsContent value="task_2">
-                    Hello world
+                    <Task2 />
                 </TabsContent>
             </Tabs>
         </div>
