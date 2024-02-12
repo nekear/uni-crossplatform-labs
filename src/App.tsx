@@ -10,7 +10,7 @@ import '@ionic/react/css/normalize.css';
 import '@ionic/react/css/structure.css';
 import '@ionic/react/css/typography.css';
 
-import Home from "@/views/Home";
+import Lab1 from "@/views/Lab1";
 import {ThemeProvider} from "@/components/theme-provider";
 
 setupIonicReact();
@@ -21,11 +21,11 @@ const App: React.FC = () => (
         <IonApp>
             <IonReactRouter>
                 <IonRouterOutlet>
-                    <Route exact path="/home">
-                        <Home/>
+                    <Route exact path="/lab1">
+                        <Lab1 />
                     </Route>
                     <Route exact path="/">
-                        <Redirect to="/home"/>
+                        <Redirect to="/lab1"/>
                     </Route>
                 </IonRouterOutlet>
             </IonReactRouter>
