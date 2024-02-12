@@ -54,7 +54,7 @@ export default function Home() {
                 <Form {...form}>
                     <form onSubmit={onSubmit}>
                         <CardHeader className={"space-y-2"}>
-                            <CardTitle>Enter 3 numbers</CardTitle>
+                            <CardTitle>Task 1</CardTitle>
                             {
                                 !!result &&
                                 <CardDescription>
