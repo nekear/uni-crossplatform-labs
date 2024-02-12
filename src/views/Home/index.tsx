@@ -34,36 +34,12 @@ export default function Home() {
     const [result, setResult] = React.useState<number>()
 
     const onSubmit = form.handleSubmit((data) => {
-        const negativeCounter = data.numbers.reduce((acc, curr) => {
-            return acc + (curr.value < 0 ? 1 : 0)
-        }, 0);
+        const sum = data.numbers.reduce((acc, n) => acc + n.value, 0)
 
-        const sum = data.numbers.reduce((acc, curr) => {
-            return acc + Math.abs(curr.value)
-        }, 0);
-
-        const multiplication = data.numbers.reduce((acc, curr) => {
-            return acc * Math.abs(curr.value)
-        }, 1);
-
-        // 0 neg -> sum (2, 3, 4 = 9)
-        // 1 neg -> geom of modules (2, -3, 4 = 2.8844)
-        // 2 neg -> ari of modules = sum / 3 (-2, -3, 4 = 3)
-        // 3 neg -> *
-
-        switch (negativeCounter) {
-            case 0:
-                setResult(sum)
-                break;
-            case 1:
-                setResult(Math.pow(multiplication, 1/3))
-                break;
-            case 2:
-                setResult(sum / 3)
-                break;
-            case 3:
-                setResult(multiplication * -1)
-                break;
+        if(data.numbers.some(n => n.value > 5)){
+            setResult(Math.pow(sum,3))
+        }else{
+            setResult(sum)
         }
     });
 
