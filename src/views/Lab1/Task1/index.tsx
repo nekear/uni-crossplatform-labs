@@ -36,6 +36,7 @@ export default function Task1() {
     const onSubmit = form.handleSubmit((data) => {
         const sum = data.numbers.reduce((acc, n) => acc + n.value, 0)
 
+        // Задано три числа. Якщо хоч одне з них більше за 5, то знайти куб суми. В іншому випадку – суму.
         if (data.numbers.some(n => n.value > 5)) {
             setResult(Math.pow(sum, 3))
         } else {
