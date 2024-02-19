@@ -17,7 +17,7 @@ setupIonicReact();
 
 
 const App: React.FC = () => (
-    <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
         <IonApp>
             <IonReactRouter>
                 <IonRouterOutlet>
