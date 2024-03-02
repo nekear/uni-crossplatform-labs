@@ -18,7 +18,7 @@ export default function MenuNav({items}: MenuNavProps) {
     const location = useLocation();
 
     return <Sheet>
-        <div className={"border-b border-solid border-border p-4 fixed top-0 left-0 w-full z-40"}>
+        <div className={"border-b border-solid border-border p-4 w-full z-40"}>
             <SheetTrigger>
                 <Button variant={"ghost"}>
                     <AlignJustify className={"h-6 w-6"}/>

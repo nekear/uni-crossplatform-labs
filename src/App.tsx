@@ -11,6 +11,7 @@ import '@ionic/react/css/structure.css';
 import '@ionic/react/css/typography.css';
 
 import Lab1 from "@/views/Lab1";
+import Lab2 from "@/views/Lab2";
 import {ThemeProvider} from "@/components/theme-provider";
 import MenuNav from "@/components/ux/menu-nav";
 
@@ -25,14 +26,15 @@ const App: React.FC = () => (
                     {title: "Lab 1", route: "/lab1"},
                     {title: "Lab 2", route: "/lab2"},
                 ]}/>
-                <IonRouterOutlet>
-                    <Route exact path="/lab1">
-                        <Lab1 />
-                    </Route>
-                    <Route exact path="/">
-                        <Redirect to="/lab1"/>
-                    </Route>
-                </IonRouterOutlet>
+                <Route exact path="/lab1">
+                    <Lab1 />
+                </Route>
+                <Route exact path="/lab2">
+                    <Lab2 />
+                </Route>
+                <Route exact path="/">
+                    <Redirect to="/lab1"/>
+                </Route>
             </IonReactRouter>
         </IonApp>
     </ThemeProvider>
