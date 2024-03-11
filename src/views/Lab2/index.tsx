@@ -81,7 +81,7 @@ export default function Lab2() {
 
     return (
         <ResizablePanelGroup
-            direction="horizontal"
+            direction="vertical"
             className="w-full rounded-lg border"
         >
             <ResizablePanel defaultSize={50}>
