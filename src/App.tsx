@@ -1,5 +1,6 @@
+import React from "react";
 import {Redirect, Route} from 'react-router-dom';
-import {IonApp, IonRouterOutlet, setupIonicReact} from '@ionic/react';
+import {IonApp, setupIonicReact} from '@ionic/react';
 import {IonReactRouter} from '@ionic/react-router';
 
 /* Core CSS required for Ionic components to work properly */
@@ -14,6 +15,7 @@ import Lab1 from "@/views/Lab1";
 import Lab2 from "@/views/Lab2";
 import {ThemeProvider} from "@/components/theme-provider";
 import MenuNav from "@/components/ux/menu-nav";
+import Lab3 from "@/views/Lab3";
 
 setupIonicReact();
 
@@ -25,12 +27,16 @@ const App: React.FC = () => (
                 <MenuNav items={[
                     {title: "Lab 1", route: "/lab1"},
                     {title: "Lab 2", route: "/lab2"},
+                    {title: "Lab 3", route: "/lab3"}
                 ]}/>
                 <Route exact path="/lab1">
                     <Lab1 />
                 </Route>
                 <Route exact path="/lab2">
                     <Lab2 />
+                </Route>
+                <Route exact path="/lab3">
+                    <Lab3 />
                 </Route>
                 <Route exact path="/">
                     <Redirect to="/lab1"/>
