@@ -16,6 +16,7 @@ import Lab2 from "@/views/Lab2";
 import {ThemeProvider} from "@/components/theme-provider";
 import MenuNav from "@/components/ux/menu-nav";
 import Lab3 from "@/views/Lab3";
+import Lab4 from "@/views/Lab4";
 
 setupIonicReact();
 
@@ -27,7 +28,8 @@ const App: React.FC = () => (
                 <MenuNav items={[
                     {title: "Lab 1", route: "/lab1"},
                     {title: "Lab 2", route: "/lab2"},
-                    {title: "Lab 3", route: "/lab3"}
+                    {title: "Lab 3", route: "/lab3"},
+                    {title: "Lab 4", route: "/lab4"},
                 ]}/>
                 <Route exact path="/lab1">
                     <Lab1 />
@@ -37,6 +39,9 @@ const App: React.FC = () => (
                 </Route>
                 <Route exact path="/lab3">
                     <Lab3 />
+                </Route>
+                <Route exact path="/lab4">
+                    <Lab4 />
                 </Route>
                 <Route exact path="/">
                     <Redirect to="/lab1"/>
