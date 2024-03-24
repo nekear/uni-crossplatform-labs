@@ -1,11 +1,11 @@
 import React from "react";
 import {Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
 import {Card, CardContent, CardHeader} from "@/components/ui/card";
-import {Quadrangle, Rectangle, Square} from "@/views/Lab4/logic";
+import {Shape, Rectangle, Square} from "@/views/Lab4/logic";
 
 
 export default function Lab4() {
-    const shapesArray: Quadrangle[] = [
+    const shapesArray: Shape[] = [
         new Rectangle(5, 10),
         new Square(5),
         new Rectangle(10, 20),
