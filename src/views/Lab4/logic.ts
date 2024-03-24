@@ -1,4 +1,4 @@
-abstract class Quadrangle {
+abstract class Shape {
     readonly name: string;
 
     constructor(name: string) {
@@ -8,7 +8,7 @@ abstract class Quadrangle {
     abstract getArea(): number;
 }
 
-class Rectangle extends Quadrangle {
+class Rectangle extends Shape {
     readonly width: number;
     readonly height: number;
 
@@ -23,7 +23,7 @@ class Rectangle extends Quadrangle {
     }
 }
 
-class Square extends Quadrangle {
+class Square extends Shape {
     readonly side: number;
 
     constructor(side: number) {
@@ -36,4 +36,4 @@ class Square extends Quadrangle {
     }
 }
 
-export {Quadrangle, Rectangle, Square};
+export {Shape, Rectangle, Square};
