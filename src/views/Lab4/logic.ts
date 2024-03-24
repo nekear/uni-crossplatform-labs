@@ -13,6 +13,8 @@ class Rectangle extends Shape {
     readonly height: number;
 
     constructor(a: number, b: number) {
+        if(a < 0 || b < 0) throw new Error("Negative values are not allowed");
+
         super("Rectangle");
         this.width = a;
         this.height = b;
@@ -27,6 +29,8 @@ class Square extends Shape {
     readonly side: number;
 
     constructor(side: number) {
+        if(side < 0) throw new Error("Negative values are not allowed");
+
         super("Square");
         this.side = side;
     }
