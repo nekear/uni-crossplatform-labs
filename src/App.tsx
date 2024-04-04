@@ -11,13 +11,14 @@ import '@ionic/react/css/normalize.css';
 import '@ionic/react/css/structure.css';
 import '@ionic/react/css/typography.css';
 
-import Lab1 from "@/views/Lab1";
+import Lab1 from "@/views/Module1";
 import Lab2 from "@/views/Lab2";
 import {ThemeProvider} from "@/components/theme-provider";
 import MenuNav from "@/components/ux/menu-nav";
 import Lab3 from "@/views/Lab3";
 import Lab4 from "@/views/Lab4";
 import Lab6 from "@/views/Lab6";
+import Module1 from "@/views/Module1";
 
 setupIonicReact();
 
@@ -35,22 +36,22 @@ const App: React.FC = () => (
                     {title: "Module 1", route: "/module_1"},
                 ]}/>
                 <Route exact path="/lab1">
-                    <Lab1 />
+                    <Lab1/>
                 </Route>
                 <Route exact path="/lab2">
-                    <Lab2 />
+                    <Lab2/>
                 </Route>
                 <Route exact path="/lab3">
-                    <Lab3 />
+                    <Lab3/>
                 </Route>
                 <Route exact path="/lab4">
-                    <Lab4 />
+                    <Lab4/>
                 </Route>
                 <Route exact path="/lab6">
-                    <Lab6 />
+                    <Lab6/>
                 </Route>
                 <Route exact path="/module_1">
-                    <Lab6 />
+                    <Module1/>
                 </Route>
                 <Route exact path="/">
                     <Redirect to="/module_1"/>
