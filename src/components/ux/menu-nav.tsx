@@ -14,15 +14,19 @@ type MenuNavProps = {
 }
 
 export default function MenuNav({items}: MenuNavProps) {
-    const [isOpen, setIsOpen] = React.useState(false);
     const location = useLocation();
 
     return <Sheet>
         <div className={"border-b border-solid border-border p-4 w-full z-40"}>
             <SheetTrigger>
-                <Button variant={"ghost"}>
-                    <AlignJustify className={"h-6 w-6"}/>
-                </Button>
+                <div className={"flex flex-row space-x-2 items-center"}>
+                    <Button variant={"ghost"}>
+                        <AlignJustify className={"h-6 w-6"}/>
+                    </Button>
+                    <h4 className="scroll-m-20 text-xl font-semibold tracking-tight mt-[-2px]">
+                        {items.find(item => item.route === location.pathname)?.title ?? null}
+                    </h4>
+                </div>
             </SheetTrigger>
         </div>
         <SheetContent side={"left"}>

@@ -32,6 +32,7 @@ const App: React.FC = () => (
                     {title: "Lab 3", route: "/lab3"},
                     {title: "Lab 4", route: "/lab4"},
                     {title: "Lab 6", route: "/lab6"},
+                    {title: "Module 1", route: "/module_1"},
                 ]}/>
                 <Route exact path="/lab1">
                     <Lab1 />
@@ -48,8 +49,11 @@ const App: React.FC = () => (
                 <Route exact path="/lab6">
                     <Lab6 />
                 </Route>
+                <Route exact path="/module_1">
+                    <Lab6 />
+                </Route>
                 <Route exact path="/">
-                    <Redirect to="/lab1"/>
+                    <Redirect to="/module_1"/>
                 </Route>
             </IonReactRouter>
         </IonApp>
