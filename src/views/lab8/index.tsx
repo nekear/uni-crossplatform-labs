@@ -7,11 +7,17 @@ import {Form, FormControl, FormField, FormItem, FormMessage} from "@/components/
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {Trash} from "lucide-react";
+import {RefinementService} from "@/views/lab8/refinements";
+
+
+const refinementService = new RefinementService();
+const personNameRefinement = refinementService.refinePersonName();
+const phoneRefinement = refinementService.refinePhoneNumber();
 
 const formSchema = z.object({
     faculty_name: z.string(),
-    dean_name: z.string(),
-    phone: z.string(),
+    dean_name: z.string().refine(personNameRefinement.refine, personNameRefinement.message),
+    phone: z.string().refine(phoneRefinement.refine, phoneRefinement.message),
     address: z.string(),
     departments: z.array(
         z.object({
@@ -104,7 +110,7 @@ export default function Lab8() {
                                 <div className={"space-y-2"}>
                                     {
                                         departments.map((department, index) => (
-                                            <div key={department.id} >
+                                            <div key={department.id}>
                                                 <FormField
                                                     control={form.control}
                                                     name={`departments.${index}.name`}
@@ -126,7 +132,8 @@ export default function Lab8() {
                                     }
                                 </div>
                                 <div>
-                                    <Button onClick={() => append({name: undefined as unknown as string})} type={"button"}>Add department</Button>
+                                    <Button onClick={() => append({name: undefined as unknown as string})}
+                                            type={"button"}>Add department</Button>
                                 </div>
                             </div>
                         </div>
