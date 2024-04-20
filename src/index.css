@@ -73,6 +73,7 @@
 @layer base {
     * {
         @apply border-border;
+        overflow-y: auto;
     }
     body {
         @apply bg-background text-foreground;
