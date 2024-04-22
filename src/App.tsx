@@ -21,6 +21,7 @@ import Lab6 from "@/views/Lab6";
 import Module1 from "@/views/Module1";
 import Lab7 from "@/views/Lab7";
 import Lab8 from "@/views/lab8";
+import Lab9 from "@/views/lab9";
 
 setupIonicReact();
 
@@ -38,6 +39,7 @@ const App: React.FC = () => (
                     {title: "Module 1", route: "/module1"},
                     {title: "Lab 7", route: "/lab7"},
                     {title: "Lab 8", route: "/lab8"},
+                    {title: "Lab 9", route: "/lab9"},
                 ]}/>
                 <Route exact path="/lab1">
                     <Lab1/>
@@ -63,8 +65,11 @@ const App: React.FC = () => (
                 <Route exact path="/lab8">
                     <Lab8/>
                 </Route>
+                <Route exact path="/lab9">
+                    <Lab9/>
+                </Route>
                 <Route exact path="/">
-                    <Redirect to="/lab8"/>
+                    <Redirect to="/lab9"/>
                 </Route>
             </IonReactRouter>
         </IonApp>
