@@ -12,16 +12,17 @@ import '@ionic/react/css/structure.css';
 import '@ionic/react/css/typography.css';
 
 import Lab1 from "@/views/Module1";
+import Module1 from "@/views/Module1";
 import Lab2 from "@/views/Lab2";
 import {ThemeProvider} from "@/components/theme-provider";
 import MenuNav from "@/components/ux/menu-nav";
 import Lab3 from "@/views/Lab3";
 import Lab4 from "@/views/Lab4";
 import Lab6 from "@/views/Lab6";
-import Module1 from "@/views/Module1";
 import Lab7 from "@/views/Lab7";
 import Lab8 from "@/views/lab8";
 import Lab9 from "@/views/lab9";
+import Lab10 from "@/views/lab10";
 
 setupIonicReact();
 
@@ -40,6 +41,7 @@ const App: React.FC = () => (
                     {title: "Lab 7", route: "/lab7"},
                     {title: "Lab 8", route: "/lab8"},
                     {title: "Lab 9", route: "/lab9"},
+                    {title: "Lab 10", route: "/lab10"},
                 ]}/>
                 <Route exact path="/lab1">
                     <Lab1/>
@@ -68,8 +70,11 @@ const App: React.FC = () => (
                 <Route exact path="/lab9">
                     <Lab9/>
                 </Route>
+                <Route exact path="/lab10">
+                    <Lab10/>
+                </Route>
                 <Route exact path="/">
-                    <Redirect to="/lab9"/>
+                    <Redirect to="/lab10"/>
                 </Route>
             </IonReactRouter>
         </IonApp>
