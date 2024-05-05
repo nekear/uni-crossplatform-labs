@@ -6,8 +6,9 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {Form, FormControl, FormField, FormItem, FormMessage} from "@/components/ui/form";
 import {Input} from "@/components/ui/input";
 import {Card, CardContent, CardFooter, CardHeader} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import {Button} from "@/components/ui/button";
 import {Plus} from "lucide-react";
+import {useRx} from "@/lib/utils";
 
 const formSchema = z.object({
     name: z.string()
@@ -20,12 +21,14 @@ export default function CityCreator() {
 
     const form = useForm<FormTyping>({
         resolver: zodResolver(formSchema)
-    })
+    });
 
     const onSubmit = form.handleSubmit((data: FormTyping) => {
         manager.addCity(data.name);
         form.reset();
     }, console.error)
+
+    const {isLoading: isCitiesListLoading} = useRx(manager.citiesList$);
 
     return (
         <form onSubmit={onSubmit}>
@@ -49,10 +52,12 @@ export default function CityCreator() {
                         />
                     </CardContent>
                     <CardFooter>
-                       <Button>
-                           <Plus size={14} className={"mr-2"}/>
-                          Create
-                       </Button>
+                        <Button disabled={isCitiesListLoading}>
+                            <Plus size={14} className={"mr-2"}/>
+                            {
+                                isCitiesListLoading ? "Loading..." : "Create"
+                            }
+                        </Button>
                     </CardFooter>
                 </Form>
             </Card>

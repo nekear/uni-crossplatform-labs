@@ -9,9 +9,9 @@ import {useRx} from "@/lib/utils";
 export default function EnterprisesList() {
     const manager = useContext(EnterpriseContext);
 
-    const citiesList = useRx(manager.citiesList$);
+    const {data: citiesList, isLoading: isCitiesListLoading} = useRx(manager.citiesList$);
     const currentCityId = useRx(manager.currentCityId$);
-    const enterprisesList = useRx(manager.enterprisesList$);
+    const {data: enterprisesList, isLoading: isEnterprisesListLoading} = useRx(manager.enterprisesList$);
 
     const filteredEnterprises = useMemo(() => {
         return enterprisesList.filter(x => x.city_id === currentCityId);
@@ -21,31 +21,42 @@ export default function EnterprisesList() {
         <Card className={"max-w-xl w-full"}>
             <CardHeader className={"flex flex-row items-center justify-between"}>
                 <h2 className="text-xl font-semibold">Enterprises</h2>
-                <Select value={currentCityId} onValueChange={(value) => manager.setCurrentCity(value)}>
-                    <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder="City"/>
-                    </SelectTrigger>
-                    <SelectContent>
-                        {
-                            citiesList.map(x =>
-                                <SelectItem value={x.id}>{x.name}</SelectItem>
-                            )
-                        }
-                    </SelectContent>
-                </Select>
+                {
+                    !isCitiesListLoading &&
+                    <>
+                        <Select value={currentCityId} onValueChange={(value) => manager.setCurrentCity(value)}>
+                            <SelectTrigger className="w-[180px]">
+                                <SelectValue placeholder="City"/>
+                            </SelectTrigger>
+                            <SelectContent>
+                                {
+                                    citiesList.map(x =>
+                                        <SelectItem value={x.id} key={x.id}>{x.name}</SelectItem>
+                                    )
+                                }
+                            </SelectContent>
+                        </Select>
+                    </>
+                }
             </CardHeader>
             <CardContent>
                 {
-                    filteredEnterprises.length ?
-                        <ul>
-                            {
-                                filteredEnterprises.filter(x => x.city_id === currentCityId).map(x => <li>{x.name}</li>)
-                            }
-                        </ul>
+                    isEnterprisesListLoading
+                        ?
+                        "Loading"
                         :
-                        <div>
-                            No enterprises found for this city!
-                        </div>
+
+                        filteredEnterprises.length ?
+                            <ul>
+                                {
+                                    filteredEnterprises.filter(x => x.city_id === currentCityId).map(x =>
+                                        <li key={x.city_id}>{x.name}</li>)
+                                }
+                            </ul>
+                            :
+                            <div>
+                                No enterprises found for this city!
+                            </div>
 
                 }
             </CardContent>
