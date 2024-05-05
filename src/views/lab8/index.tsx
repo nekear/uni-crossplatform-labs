@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Card, CardContent, CardFooter, CardHeader} from "@/components/ui/card";
-import {string, z} from "zod";
+import {z} from "zod";
 import {useFieldArray, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Form, FormControl, FormField, FormItem, FormMessage} from "@/components/ui/form";
@@ -40,7 +40,6 @@ export default function Lab8() {
         control: form.control,
         name: "departments"
     });
-
 
     const onSubmit = form.handleSubmit(console.log, console.error);
 
