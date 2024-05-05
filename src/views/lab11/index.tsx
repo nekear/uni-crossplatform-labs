@@ -3,8 +3,9 @@ import {EnterprisesManager} from "@/views/lab11/service";
 import EnterprisesList from "@/views/lab11/components/EnterprisesList";
 import CityCreator from "@/views/lab11/components/CityCreator";
 import EnterpriseCreator from "@/views/lab11/components/EnterpriseCreator";
+import {firebaseApp} from "@/views/lab11/firebase.config";
 
-const enterprisesManager = new EnterprisesManager();
+const enterprisesManager = new EnterprisesManager(firebaseApp);
 export const EnterpriseContext = React.createContext(enterprisesManager);
 
 export default function Lab11() {

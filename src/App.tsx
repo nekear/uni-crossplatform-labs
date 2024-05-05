@@ -29,7 +29,7 @@ setupIonicReact();
 
 
 const App: React.FC = () => (
-    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <IonApp>
             <IonReactRouter>
                 <MenuNav items={[
