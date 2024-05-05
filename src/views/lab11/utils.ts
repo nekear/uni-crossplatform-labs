@@ -1,6 +1,6 @@
 import {QuerySubject} from "@/views/lab11/service";
 import {FirebaseApp} from "firebase/app";
-import {getDatabase, ref, set} from "firebase/database";
+import {getDatabase, ref, set, DatabaseReference} from "firebase/database";
 
 export type City = {
     id: string;
@@ -15,9 +15,10 @@ export type Enterprise = {
 
 export type ArrayElementType<T> = T extends Array<infer U> ? U : never;
 
-export function handleSetQuery<T>(v: {
+export function handleQuery<T>(v: {
     collection: string,
     firebaseApp: FirebaseApp,
+    query: (ref: DatabaseReference, data: Record<string, ArrayElementType<T>>) => Promise<unknown>;
     data: Record<string, ArrayElementType<T>>,
     subject: QuerySubject<T>,
 }) {
@@ -26,7 +27,7 @@ export function handleSetQuery<T>(v: {
     const database = getDatabase(v.firebaseApp);
     const citiesRef = ref(database, v.collection);
 
-    set(
+    v.query(
         citiesRef,
         v.data
     )

@@ -4,6 +4,8 @@ import {Card, CardContent, CardHeader} from "@/components/ui/card";
 import {Select} from "@radix-ui/react-select";
 import {SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
 import {useRx} from "@/lib/utils";
+import EnterpriseItem from "./EnterpriseItem";
+import {Table, TableBody, TableHead, TableHeader, TableRow} from "@/components/ui/table";
 
 
 export default function EnterprisesList() {
@@ -47,12 +49,22 @@ export default function EnterprisesList() {
                         :
 
                         filteredEnterprises.length ?
-                            <ul>
-                                {
-                                    filteredEnterprises.map(x =>
-                                        <li key={x.id}>{x.name}</li>)
-                                }
-                            </ul>
+                            <Table>
+                                <TableHeader>
+                                    <TableRow>
+                                        <TableHead>
+                                            Name
+                                        </TableHead>
+                                        <TableHead>
+                                        </TableHead>
+                                    </TableRow>
+                                </TableHeader>
+                                <TableBody>
+                                    {
+                                        filteredEnterprises.map(x => <EnterpriseItem key={x.id} enterprise={x}/>)
+                                    }
+                                </TableBody>
+                            </Table>
                             :
                             <div>
                                 No enterprises found for this city!

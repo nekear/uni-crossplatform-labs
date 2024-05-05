@@ -1,13 +1,14 @@
 import {BehaviorSubject} from "rxjs";
-import {City, Enterprise, handleSetQuery} from "@/views/lab11/utils";
+import {City, Enterprise, handleQuery} from "@/views/lab11/utils";
 import {v4 as uuid} from "uuid";
-import {getDatabase, onValue, ref, set, Unsubscribe} from "firebase/database";
+import {getDatabase, onValue, ref, set, remove, Unsubscribe, Database} from "firebase/database";
 import {FirebaseApp} from "firebase/app";
 import _ from "lodash";
 
 export class EnterprisesManager {
     // Firebase stuff
     private readonly firebaseApp: FirebaseApp;
+    private readonly database: Database;
     private readonly firebaseSubscriptions: Unsubscribe[] = [];
 
     // Manager stuff
@@ -18,9 +19,9 @@ export class EnterprisesManager {
     constructor(firebaseApp: FirebaseApp) {
         this.firebaseApp = firebaseApp;
 
-        const database = getDatabase(this.firebaseApp);
-        const citiesRef = ref(database, "cities");
-        const enterprisesRef = ref(database, "enterprises");
+        this.database = getDatabase(this.firebaseApp);
+        const citiesRef = ref(this.database, "cities");
+        const enterprisesRef = ref(this.database, "enterprises");
 
         const citiesSub = onValue(citiesRef, (snapshot) => {
             const data = snapshot.val();
@@ -57,9 +58,10 @@ export class EnterprisesManager {
     addCity(cityName: string) {
         const data = [...this.citiesList$.getData(), {id: uuid(), name: cityName}];
 
-        handleSetQuery({
+        handleQuery({
             collection: "cities",
             firebaseApp: this.firebaseApp,
+            query: set,
             data: _.keyBy(data, "id"),
             subject: this.citiesList$
         })
@@ -68,9 +70,22 @@ export class EnterprisesManager {
     addEnterprise(enterprise: Omit<Enterprise, "id">) {
         const data = [...this.enterprisesList$.getData(), {id: uuid(), ...enterprise}];
 
-        handleSetQuery({
+        handleQuery({
             collection: "enterprises",
             firebaseApp: this.firebaseApp,
+            query: set,
+            data: _.keyBy(data, "id"),
+            subject: this.enterprisesList$
+        })
+    }
+
+    deleteEnterprise(enterprise_id: string) {
+        const data = [...this.enterprisesList$.getData().filter(x => x.id != enterprise_id)];
+
+        handleQuery({
+            collection: `enterprises/${enterprise_id}`,
+            firebaseApp: this.firebaseApp,
+            query: remove,
             data: _.keyBy(data, "id"),
             subject: this.enterprisesList$
         })
