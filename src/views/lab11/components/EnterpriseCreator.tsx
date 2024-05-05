@@ -22,7 +22,10 @@ export default function EnterpriseCreator() {
     const currentCityId = useRx(manager.currentCityId$);
 
     const form = useForm<FormTyping>({
-        resolver: zodResolver(formSchema)
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            name: "",
+        }
     })
 
     const onSubmit = form.handleSubmit((data: FormTyping) => {
@@ -32,6 +35,8 @@ export default function EnterpriseCreator() {
         manager.addEnterprise({city_id: currentCityId, name: data.name});
         form.reset();
     }, console.error)
+
+    const {isLoading: isEnterprisesListLoading} = useRx(manager.enterprisesList$);
 
     return (
         <form onSubmit={onSubmit}>
@@ -56,9 +61,14 @@ export default function EnterpriseCreator() {
                         />
                     </CardContent>
                     <CardFooter>
-                        <Button>
+                        <Button disabled={isEnterprisesListLoading}>
                             <Plus size={14} className={"mr-2"}/>
-                            Create
+                            {
+                                isEnterprisesListLoading ?
+                                    "Loading..."
+                                    :
+                                    "Create"
+                            }
                         </Button>
                     </CardFooter>
                 </Form>

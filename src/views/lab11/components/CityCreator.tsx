@@ -20,7 +20,10 @@ export default function CityCreator() {
     const manager = useContext(EnterpriseContext);
 
     const form = useForm<FormTyping>({
-        resolver: zodResolver(formSchema)
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            name: ""
+        }
     });
 
     const onSubmit = form.handleSubmit((data: FormTyping) => {

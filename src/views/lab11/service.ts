@@ -1,5 +1,5 @@
 import {BehaviorSubject} from "rxjs";
-import {City, Enterprise} from "@/views/lab11/types";
+import {City, Enterprise, handleSetQuery} from "@/views/lab11/utils";
 import {v4 as uuid} from "uuid";
 import {getDatabase, onValue, ref, set, Unsubscribe} from "firebase/database";
 import {FirebaseApp} from "firebase/app";
@@ -55,26 +55,25 @@ export class EnterprisesManager {
     }
 
     addCity(cityName: string) {
-        this.citiesList$.setIsLoading(true);
-
-        const database = getDatabase(this.firebaseApp);
-        const citiesRef = ref(database, "cities");
-
         const data = [...this.citiesList$.getData(), {id: uuid(), name: cityName}];
 
-        set(
-            citiesRef,
-            _.keyBy(data, "id")
-        )
-            .then(() => {
-                this.citiesList$.setData(data);
-            })
-            .catch(console.error)
-            .finally(() => void this.citiesList$.setIsLoading(false))
+        handleSetQuery({
+            collection: "cities",
+            firebaseApp: this.firebaseApp,
+            data: _.keyBy(data, "id"),
+            subject: this.citiesList$
+        })
     }
 
     addEnterprise(enterprise: Omit<Enterprise, "id">) {
-        this.enterprisesList$.setData([...this.enterprisesList$.getData(), {id: uuid(), ...enterprise}]);
+        const data = [...this.enterprisesList$.getData(), {id: uuid(), ...enterprise}];
+
+        handleSetQuery({
+            collection: "enterprises",
+            firebaseApp: this.firebaseApp,
+            data: _.keyBy(data, "id"),
+            subject: this.enterprisesList$
+        })
     }
 
     setCurrentCity(id: string) {

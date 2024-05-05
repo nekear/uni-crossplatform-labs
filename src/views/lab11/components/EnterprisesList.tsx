@@ -49,8 +49,8 @@ export default function EnterprisesList() {
                         filteredEnterprises.length ?
                             <ul>
                                 {
-                                    filteredEnterprises.filter(x => x.city_id === currentCityId).map(x =>
-                                        <li key={x.city_id}>{x.name}</li>)
+                                    filteredEnterprises.map(x =>
+                                        <li key={x.id}>{x.name}</li>)
                                 }
                             </ul>
                             :
