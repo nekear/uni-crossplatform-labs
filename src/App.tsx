@@ -23,12 +23,13 @@ import Lab7 from "@/views/Lab7";
 import Lab8 from "@/views/lab8";
 import Lab9 from "@/views/lab9";
 import Lab10 from "@/views/lab10";
+import Lab11 from "@/views/lab11";
 
 setupIonicReact();
 
 
 const App: React.FC = () => (
-    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <IonApp>
             <IonReactRouter>
                 <MenuNav items={[
@@ -42,6 +43,7 @@ const App: React.FC = () => (
                     {title: "Lab 8", route: "/lab8"},
                     {title: "Lab 9", route: "/lab9"},
                     {title: "Lab 10", route: "/lab10"},
+                    {title: "Lab 11", route: "/lab11"},
                 ]}/>
                 <Route exact path="/lab1">
                     <Lab1/>
@@ -73,8 +75,11 @@ const App: React.FC = () => (
                 <Route exact path="/lab10">
                     <Lab10/>
                 </Route>
+                <Route exact path="/lab11">
+                    <Lab11/>
+                </Route>
                 <Route exact path="/">
-                    <Redirect to="/lab10"/>
+                    <Redirect to="/lab11"/>
                 </Route>
             </IonReactRouter>
         </IonApp>

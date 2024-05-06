@@ -5,7 +5,6 @@ import {Button} from "@/components/ui/button";
 import {Pencil, Save, X} from "lucide-react";
 import {cn} from "@/lib/utils";
 import {useForm} from "react-hook-form";
-import {l} from "vite/dist/node/types.d-jgA8ss1A";
 import {Form, FormControl, FormField, FormItem, FormMessage} from "@/components/ui/form";
 import {Input} from "@/components/ui/input";
 
